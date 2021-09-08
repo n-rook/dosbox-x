@@ -2097,7 +2097,7 @@ SDL_Window* GFX_SetSDLWindowMode(uint16_t width, uint16_t height, SCREEN_TYPES s
         displayMode.h = height;
         SDL_SetWindowDisplayMode(sdl.window, &displayMode);
 
-        SDL_SetWindowFullscreen(sdl.window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+        SDL_SetWindowFullscreen(sdl.window, SDL_WINDOW_FULLSCREEN);
     } else {
         SDL_SetWindowFullscreen(sdl.window, 0);
 
