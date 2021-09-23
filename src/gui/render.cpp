@@ -282,10 +282,14 @@ static void RENDER_StartLineHandler(const void * s) {
 }
 
 static void RENDER_FinishLineHandler(const void * s) {
-    if (s) {
+     if (s) {
         const Bitu *src = (Bitu*)s;
         Bitu *cache = (Bitu*)(render.scale.cacheRead);
         for (Bitu x=render.src.start;x>0;) {
+            if((void*)&RENDER_DrawLine == cache) {
+                LOG_MSG("Disaster! cache is &RENDER_DRAWLINE! This makes no sense!");
+            }
+
             cache[0] = src[0];
             x--; src++; cache++;
         }

@@ -2894,10 +2894,14 @@ static void VGA_DrawSingleLine(Bitu /*blah*/) {
     bool skiprender;
 
 again:
-    if (vga.draw.render_step == 0)
+    if(RENDER_DrawLine == NULL) {
+        LOG_MSG("BUG: RENDER_DrawLine is null when calling VGA_DrawSingleLine");
+        return;
+    } else if (vga.draw.render_step == 0)
         skiprender = false;
-    else
+    else {
         skiprender = true;
+    }
 
     if ((++vga.draw.render_step) >= vga.draw.render_max)
         vga.draw.render_step = 0;

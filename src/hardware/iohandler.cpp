@@ -510,7 +510,12 @@ void IO_WriteW(Bitu port,uint16_t val) {
 	}
 	else {
 		IO_USEC_write_delay(1);
-		io_writehandlers[1][port](port,val,2);
+        if(io_writehandlers[1][port] == NULL) {
+            LOG_MSG("Skipping log to null port %d", port);
+        }
+        else {
+            io_writehandlers[1][port](port, val, 2);
+        }
 	}
 }
 
